@@ -6,7 +6,7 @@ import { Button, Flex, Link, Text } from "@chakra-ui/react";
 // Assets
 import banner from "assets/img/nfts/NftBanner1.png";
 
-export default function Banner() {
+export default function Banner({onClick}) {
   // Chakra Color Mode
   return (
     <Flex
@@ -30,7 +30,7 @@ export default function Banner() {
         }}
         fontWeight='700'
         lineHeight={{ base: "32px", md: "42px" }}>
-        Discover, collect, and sell extraordinary NFTs
+        Kacang Garuda
       </Text>
       <Text
         fontSize='md'
@@ -46,11 +46,10 @@ export default function Banner() {
         fontWeight='500'
         mb='40px'
         lineHeight='28px'>
-        Enter in this creative world. Discover now the latest NFTs or start
-        creating your own!
+        Analisis Sentimen Brand postingan sosial media X/Twitter Terhadap Brand Anda
       </Text>
       <Flex align='center'>
-        <Button
+        <Button onClick={onClick}
           bg='white'
           color='black'
           _hover={{ bg: "whiteAlpha.900" }}
@@ -61,13 +60,8 @@ export default function Banner() {
           py='20px'
           px='27'
           me='38px'>
-          Discover now
+          Analysis
         </Button>
-        <Link>
-          <Text color='white' fontSize='sm' fontWeight='500'>
-            Watch video
-          </Text>
-        </Link>
       </Flex>
     </Flex>
   );
