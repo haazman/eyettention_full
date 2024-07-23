@@ -1,3 +1,12 @@
+## [2.0.0] 2024-07-22
+
+### Vulnerabilities removed
+
+- Most vulnerabilities removed, besides those cause by `react-scripts`. We kept this depedency due to the fact that there are
+many users who still use it, and there is already a Next.js version for thos who want to migrate from `react-scripts`.
+- Updated to React 18.
+- Updated react-table to Tanstack V8.
+
 ## [1.3.0] 2023-05-06
 
 🐛 Bugs solved:
