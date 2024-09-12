@@ -49,12 +49,7 @@ import {
   MdFileCopy,
 } from "react-icons/md";
 import ApexCharts from "apexcharts";
-import { Switch } from "react-router-dom/cjs/react-router-dom.min";
-import CheckTable from "views/admin/default/components/CheckTable";
-import ComplexTable from "views/admin/default/components/ComplexTable";
-import DailyTraffic from "views/admin/default/components/DailyTraffic";
-import PieCard from "views/admin/default/components/PieCard";
-import Tasks from "views/admin/default/components/Tasks";
+
 import TotalSpent from "views/admin/default/components/TotalSpent";
 import WeeklyRevenue from "views/admin/default/components/WeeklyRevenue";
 import {
@@ -75,7 +70,7 @@ export default function UserReports() {
   const brandColor = useColorModeValue("brand.500", "white");
   const boxBg = useColorModeValue("secondaryGray.300", "whiteAlpha.100");
 
-  function fetchLook() {
+  function fetchLook(chartDaily = new ApexCharts) {
     const fetchData = async () => {
       setIsLoading(true);
       await fetch("http://localhost:3500/daily")
@@ -103,9 +98,7 @@ export default function UserReports() {
               }
             }]
           };
-
-          var chart = new ApexCharts(document.querySelector("#pieChart"), options);
-          chart.render();
+          chartDaily.updateOptions(options)
 
         })
         .catch(error => console.error("Error fetching users :", error))
@@ -152,9 +145,30 @@ export default function UserReports() {
     fetchData();
   }
   useEffect(() => {
-    fetchLook();
+    var options = {
+      series: [100, 20],
+      chart: {
+        width: 380,
+        type: 'pie',
+      },
+      labels: ['Total Users', 'Looking People'],
+      responsive: [{
+        breakpoint: 480,
+        options: {
+          chart: {
+            width: 200
+          },
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }]
+    };
+    var chartDaily = new ApexCharts(document.querySelector("#pieChart"), options);
+    chartDaily.render();
+    fetchLook(chartDaily);
     const interval = setInterval(() => {
-      fetchLook();
+      fetchLook(chartDaily);
     }, 5 * 1000);
   }, []);
 
@@ -165,12 +179,6 @@ export default function UserReports() {
       </SimpleGrid>
       <Flex mb="20px" flexDirection="row" justifyContent="space-between" >
         <Button maxWidth="500px" onClick={fetchLook}>Refresh</Button>
-        <Select onChange={val => {
-          console.log(val.eventPhase)
-        }} maxWidth="600px">
-          <option value="persen">Percentage</option>
-          <option value="tes">Tes</option>
-        </Select>
       </Flex>
       <SimpleGrid
         columns={{ base: 1, md: 2, lg: 3, "2xl": 6 }}

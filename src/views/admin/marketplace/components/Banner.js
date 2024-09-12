@@ -30,7 +30,7 @@ export default function Banner({onClick}) {
         }}
         fontWeight='700'
         lineHeight={{ base: "32px", md: "42px" }}>
-        Kacang Garuda
+        Erigo
       </Text>
       <Text
         fontSize='md'

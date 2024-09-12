@@ -99,7 +99,7 @@ export default function Marketplace() {
   function fetchSentiment() {
     const fetchData = async () => {
       setIsLoading(true);
-      await fetch("http://localhost:5000/analyze_tweets?query=Kacang%Garuda&count=20")
+      await fetch("http://localhost:5000/analyze_tweets?query=Erigo&count=20")
         .then(response => response.json())
         .then(data => {
           setIsLoading(false);
@@ -136,7 +136,9 @@ export default function Marketplace() {
 
   }
 
-  useEffect(() =)
+  useEffect(() => {
+     
+  })
   // Chakra Color Mode
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const textColorBrand = useColorModeValue("brand.500", "white");
